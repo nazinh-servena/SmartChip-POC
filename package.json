@@ -1,0 +1,17 @@
+{
+  "name": "@smartchip/root",
+  "private": true,
+  "scripts": {
+    "test": "pnpm -r test",
+    "test:engine": "pnpm --filter @smartchip/engine test",
+    "dev:engine": "pnpm --filter @smartchip/engine dev",
+    "dev:workbench": "pnpm --filter @smartchip/workbench dev",
+    "dev": "pnpm run dev:engine & pnpm run dev:workbench",
+    "build": "pnpm -r build",
+    "typecheck": "pnpm -r typecheck"
+  },
+  "devDependencies": {
+    "typescript": "^5.9.3"
+  },
+  "packageManager": "pnpm@10.28.2+sha512.41872f037ad22f7348e3b1debbaf7e867cfd448f2726d9cf74c08f19507c31d2c8e7a11525b983febc2df640b5438dee6023ebb1f84ed43cc2d654d2bc326264"
+}

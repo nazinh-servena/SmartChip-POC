@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Smart Chips Engine — Architecture Diagram</title>
+<style>
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+  body { background: #0f172a; font-family: 'Inter', system-ui, -apple-system, sans-serif; color: #e2e8f0; min-height: 100vh; padding: 40px; }
+  h1 { text-align: center; font-size: 28px; font-weight: 700; margin-bottom: 8px; color: #f8fafc; }
+  .subtitle { text-align: center; font-size: 14px; color: #94a3b8; margin-bottom: 48px; }
+
+  .diagram { max-width: 1200px; margin: 0 auto; }
+
+  /* ── Section titles ── */
+  .section-label {
+    font-size: 11px; font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
+    color: #64748b; margin-bottom: 16px; padding-left: 4px;
+  }
+
+  /* ── Workbench row ── */
+  .workbench-row {
+    display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 20px; margin-bottom: 32px;
+  }
+
+  .panel {
+    background: #1e293b; border: 1px solid #334155; border-radius: 12px; padding: 24px;
+    position: relative; transition: border-color 0.2s;
+  }
+  .panel:hover { border-color: #475569; }
+  .panel-icon { font-size: 24px; margin-bottom: 12px; }
+  .panel h3 { font-size: 16px; font-weight: 600; color: #f1f5f9; margin-bottom: 6px; }
+  .panel p { font-size: 13px; color: #94a3b8; line-height: 1.5; margin-bottom: 14px; }
+  .panel-tag {
+    display: inline-block; font-size: 11px; font-weight: 500; padding: 3px 10px;
+    border-radius: 100px; background: #0f172a; color: #94a3b8; border: 1px solid #334155;
+    margin-right: 6px; margin-bottom: 6px;
+  }
+  .panel-tag.blue { background: #1e3a5f; color: #7dd3fc; border-color: #1e3a5f; }
+  .panel-tag.purple { background: #3b1f6e; color: #c4b5fd; border-color: #3b1f6e; }
+  .panel-tag.green { background: #14532d; color: #86efac; border-color: #14532d; }
+
+  /* ── Arrows ── */
+  .arrow-row {
+    display: flex; justify-content: center; align-items: center; margin: 12px 0 12px 0;
+    gap: 12px; position: relative; height: 56px;
+  }
+  .arrow-down {
+    width: 2px; height: 36px; background: linear-gradient(to bottom, #3b82f6, #6366f1);
+    position: relative;
+  }
+  .arrow-down::after {
+    content: ''; position: absolute; bottom: -6px; left: -5px;
+    border-left: 6px solid transparent; border-right: 6px solid transparent;
+    border-top: 8px solid #6366f1;
+  }
+  .arrow-label {
+    font-size: 11px; color: #64748b; background: #0f172a; padding: 4px 12px;
+    border-radius: 100px; border: 1px solid #1e293b; white-space: nowrap;
+  }
+  .arrow-group {
+    display: flex; flex-direction: column; align-items: center;
+  }
+
+  /* ── Engine box ── */
+  .engine-container {
+    background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+    border: 2px solid #3b82f6; border-radius: 16px; padding: 32px; margin-bottom: 32px;
+    position: relative;
+  }
+  .engine-container::before {
+    content: 'BACKEND'; position: absolute; top: -10px; left: 24px;
+    font-size: 10px; font-weight: 700; letter-spacing: 2px; color: #3b82f6;
+    background: #0f172a; padding: 2px 10px; border-radius: 4px;
+  }
+  .engine-header { display: flex; align-items: center; gap: 12px; margin-bottom: 20px; }
+  .engine-header h2 { font-size: 20px; font-weight: 700; color: #f8fafc; }
+  .engine-header .badge {
+    font-size: 11px; font-weight: 600; padding: 3px 10px; border-radius: 100px;
+    background: #1e3a5f; color: #7dd3fc;
+  }
+
+  .engine-flow {
+    display: grid; grid-template-columns: 200px 40px 1fr 40px 200px; align-items: center;
+    gap: 0;
+  }
+  .flow-arrow {
+    display: flex; align-items: center; justify-content: center; color: #475569; font-size: 20px;
+  }
+
+  .input-box, .output-box {
+    background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 18px;
+  }
+  .input-box h4, .output-box h4 {
+    font-size: 12px; font-weight: 600; text-transform: uppercase; letter-spacing: 1px;
+    color: #64748b; margin-bottom: 10px;
+  }
+  .json-line { font-family: 'SF Mono', 'Fira Code', monospace; font-size: 11px; color: #94a3b8; line-height: 1.6; }
+  .json-key { color: #7dd3fc; }
+  .json-str { color: #86efac; }
+  .json-num { color: #fbbf24; }
+
+  /* ── Modules grid ── */
+  .modules-grid { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 12px; }
+  .module-card {
+    background: #0f172a; border: 1px solid #334155; border-radius: 10px; padding: 16px;
+    text-align: center; transition: border-color 0.2s, transform 0.2s;
+  }
+  .module-card:hover { border-color: #6366f1; transform: translateY(-2px); }
+  .module-card .mod-icon { font-size: 28px; margin-bottom: 8px; }
+  .module-card h4 { font-size: 14px; font-weight: 600; color: #e2e8f0; margin-bottom: 4px; }
+  .module-card .rule { font-size: 11px; color: #94a3b8; font-family: 'SF Mono', 'Fira Code', monospace; }
+  .module-card .mod-output { font-size: 12px; color: #86efac; margin-top: 8px; font-weight: 500; }
+
+  /* ── Engine internals ── */
+  .engine-internals {
+    display: flex; align-items: center; gap: 12px; margin-top: 16px; padding-top: 16px;
+    border-top: 1px solid #1e293b;
+  }
+  .engine-step {
+    flex: 1; text-align: center; padding: 10px; background: #1e293b; border-radius: 8px;
+    font-size: 12px; color: #94a3b8;
+  }
+  .engine-step strong { display: block; color: #e2e8f0; font-size: 13px; margin-bottom: 2px; }
+  .step-arrow { color: #475569; font-size: 16px; flex-shrink: 0; }
+
+  /* ── Integration row ── */
+  .integration-row {
+    display: grid; grid-template-columns: 1fr 1fr; gap: 20px;
+  }
+  .integration-box {
+    background: #1e293b; border: 1px dashed #475569; border-radius: 12px; padding: 24px;
+    opacity: 0.7;
+  }
+  .integration-box h3 { font-size: 15px; font-weight: 600; color: #94a3b8; margin-bottom: 6px; }
+  .integration-box p { font-size: 13px; color: #64748b; line-height: 1.5; }
+  .future-badge {
+    display: inline-block; font-size: 10px; font-weight: 600; padding: 2px 8px;
+    border-radius: 100px; background: #422006; color: #fbbf24; margin-left: 8px;
+  }
+
+  /* ── Shared types ── */
+  .shared-bar {
+    display: flex; align-items: center; justify-content: center; gap: 10px;
+    margin: 24px 0; padding: 12px; background: #1e293b; border: 1px solid #334155;
+    border-radius: 8px;
+  }
+  .shared-bar span { font-size: 13px; color: #c4b5fd; font-weight: 500; }
+  .shared-bar code { font-family: 'SF Mono', monospace; font-size: 12px; color: #94a3b8; }
+
+  /* ── Data flow legend ── */
+  .legend {
+    display: flex; justify-content: center; gap: 32px; margin-top: 40px; padding-top: 24px;
+    border-top: 1px solid #1e293b;
+  }
+  .legend-item { display: flex; align-items: center; gap: 8px; font-size: 12px; color: #64748b; }
+  .legend-line { width: 24px; height: 2px; }
+  .legend-line.solid { background: #3b82f6; }
+  .legend-line.dashed { background: repeating-linear-gradient(90deg, #475569 0, #475569 4px, transparent 4px, transparent 8px); }
+</style>
+</head>
+<body>
+
+<h1>Smart Chips Engine MVP</h1>
+<p class="subtitle">Architecture Overview &mdash; Monorepo with Shared Types</p>
+
+<div class="diagram">
+
+  <!-- Shared Types Bar -->
+  <div class="shared-bar">
+    <span>@smartchip/types</span>
+    <code>ComputeChipsRequest | ComputeChipsResponse | Chip | ModuleConfig</code>
+  </div>
+
+  <!-- Workbench Section -->
+  <div class="section-label" style="margin-top: 28px;">Frontend &mdash; Workbench UI &nbsp; <span style="color:#3b82f6">React + Vite + Tailwind</span></div>
+  <div class="workbench-row">
+    <div class="panel">
+      <div class="panel-icon">&#9881;&#65039;</div>
+      <h3>Configurator</h3>
+      <p>Toggle modules, set thresholds, pick channel</p>
+      <span class="panel-tag blue">Toggles</span>
+      <span class="panel-tag blue">Sliders</span>
+      <span class="panel-tag blue">Channel Picker</span>
+      <div style="margin-top: 14px; font-size: 12px; color: #64748b;">
+        <div>Variance: <span style="color:#fbbf24">1.5x &ndash; 5.0x</span></div>
+        <div>Facet Share: <span style="color:#fbbf24">10% &ndash; 50%</span></div>
+        <div>Channel: <span style="color:#fbbf24">Web (6) | WhatsApp (3)</span></div>
+      </div>
+    </div>
+    <div class="panel">
+      <div class="panel-icon">&#128202;</div>
+      <h3>Scenario Builder</h3>
+      <p>Mock search stats with presets or raw JSON</p>
+      <span class="panel-tag purple">Preset A: Mixed Bag</span>
+      <span class="panel-tag purple">Preset B: Cheap &amp; Simple</span>
+      <span class="panel-tag purple">Preset C: No Ratings</span>
+      <span class="panel-tag">Custom JSON</span>
+    </div>
+    <div class="panel">
+      <div class="panel-icon">&#128172;</div>
+      <h3>Chat Simulator</h3>
+      <p>Visual chat with chips + debug trace console</p>
+      <span class="panel-tag green">Chat Window</span>
+      <span class="panel-tag green">Chip Buttons</span>
+      <span class="panel-tag green">Debug Console</span>
+      <div style="margin-top: 14px; font-size: 11px; font-family: monospace; color: #64748b; line-height: 1.6;">
+        &gt; BudgetModule fired<br>
+        &gt; Generated "Under $450"
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrows: Workbench → Engine -->
+  <div class="arrow-row">
+    <div class="arrow-group">
+      <div class="arrow-label">Config + Mock Stats &rarr; <code style="color:#7dd3fc; font-size:11px">POST /v1/compute_chips</code></div>
+      <div class="arrow-down"></div>
+    </div>
+    <div class="arrow-group" style="margin-left: 100px;">
+      <div style="width: 2px; height: 36px; background: linear-gradient(to top, #6366f1, #3b82f6); position: relative;">
+        <div style="position: absolute; top: -6px; left: -5px; border-left: 6px solid transparent; border-right: 6px solid transparent; border-bottom: 8px solid #3b82f6;"></div>
+      </div>
+      <div class="arrow-label">Chips[] + Trace &larr; <code style="color:#86efac; font-size:11px">Response</code></div>
+    </div>
+  </div>
+
+  <!-- Engine Section -->
+  <div class="engine-container">
+    <div class="engine-header">
+      <h2>Smart Chips Engine</h2>
+      <span class="badge">Stateless</span>
+      <span class="badge">Node.js + TypeScript</span>
+      <span class="badge">&lt;50ms</span>
+    </div>
+
+    <div class="engine-flow">
+      <!-- Input -->
+      <div class="input-box">
+        <h4>Request In</h4>
+        <div class="json-line"><span class="json-key">intent</span>: <span class="json-str">"product_discovery"</span></div>
+        <div class="json-line"><span class="json-key">channel</span>: <span class="json-str">"whatsapp"</span></div>
+        <div class="json-line"><span class="json-key">stats</span>: { price, facets, ... }</div>
+        <div class="json-line"><span class="json-key">config</span>: { modules, thresholds }</div>
+      </div>
+      <div class="flow-arrow">&rarr;</div>
+
+      <!-- Modules -->
+      <div>
+        <div class="modules-grid">
+          <div class="module-card">
+            <div class="mod-icon">&#128176;</div>
+            <h4>BudgetModule</h4>
+            <div class="rule">max/min &gt; variance?</div>
+            <div class="mod-output">&rarr; [Under $Median]</div>
+          </div>
+          <div class="module-card">
+            <div class="mod-icon">&#127991;&#65039;</div>
+            <h4>FacetModule</h4>
+            <div class="rule">2+ values &gt; threshold?</div>
+            <div class="mod-output">&rarr; [Men's] [Women's]</div>
+          </div>
+          <div class="module-card">
+            <div class="mod-icon">&#11088;</div>
+            <h4>SortModule</h4>
+            <div class="rule">rating coverage &gt; threshold?</div>
+            <div class="mod-output">&rarr; [Best Rated]</div>
+          </div>
+        </div>
+
+        <!-- Engine pipeline -->
+        <div class="engine-internals">
+          <div class="engine-step"><strong>1. Validate</strong>Input schema check</div>
+          <div class="step-arrow">&rarr;</div>
+          <div class="engine-step"><strong>2. Execute</strong>Run enabled modules</div>
+          <div class="step-arrow">&rarr;</div>
+          <div class="engine-step"><strong>3. Rank</strong>Sort by priority</div>
+          <div class="step-arrow">&rarr;</div>
+          <div class="engine-step"><strong>4. Truncate</strong>Apply channel limit</div>
+        </div>
+      </div>
+
+      <div class="flow-arrow">&rarr;</div>
+
+      <!-- Output -->
+      <div class="output-box">
+        <h4>Response Out</h4>
+        <div class="json-line"><span class="json-key">option</span>: <span class="json-str">"success"</span></div>
+        <div class="json-line"><span class="json-key">chips</span>: [</div>
+        <div class="json-line">&nbsp; { label, action, priority }</div>
+        <div class="json-line">]</div>
+        <div class="json-line"><span class="json-key">trace</span>: [ ...decisions ]</div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Arrows: Engine → Integration -->
+  <div class="arrow-row">
+    <div class="arrow-group">
+      <div class="arrow-label">Chatbot Maker Function Call Pattern &darr;</div>
+      <div style="width: 2px; height: 28px; background: repeating-linear-gradient(to bottom, #475569 0, #475569 4px, transparent 4px, transparent 8px); position: relative;">
+        <div style="position: absolute; bottom: -6px; left: -5px; border-left: 6px solid transparent; border-right: 6px solid transparent; border-top: 8px solid #475569;"></div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Integration targets -->
+  <div class="section-label">Future Integration Targets</div>
+  <div class="integration-row">
+    <div class="integration-box">
+      <h3>WhatsApp / Chat Channel <span class="future-badge">POST-MVP</span></h3>
+      <p>Digital Sales Agent sends search stats &rarr; Engine returns chips &rarr; rendered as interactive buttons. Max 3 chips per message.</p>
+    </div>
+    <div class="integration-box">
+      <h3>Web / Embedded Widget <span class="future-badge">POST-MVP</span></h3>
+      <p>Same API, different channel config. Up to 6 chips rendered as clickable pills in the chat widget. Chip click triggers search refinement.</p>
+    </div>
+  </div>
+
+  <!-- Legend -->
+  <div class="legend">
+    <div class="legend-item"><div class="legend-line solid"></div> MVP data flow</div>
+    <div class="legend-item"><div class="legend-line dashed"></div> Future integration</div>
+    <div class="legend-item"><span style="color: #7dd3fc;">&#9632;</span> Input / Config</div>
+    <div class="legend-item"><span style="color: #86efac;">&#9632;</span> Output / Chips</div>
+    <div class="legend-item"><span style="color: #fbbf24;">&#9632;</span> Thresholds / Values</div>
+  </div>
+</div>
+
+</body>
+</html>
