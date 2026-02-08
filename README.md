@@ -1,4 +1,4 @@
-# Smart Chips Engine MVP
+# Smart Chips Engine POC
 
 A deterministic navigation chip generator for conversational commerce. The engine accepts search statistics or session context and returns ranked UI buttons ("chips") that guide users through product discovery, order tracking, checkout, and policy inquiries.
 
@@ -55,7 +55,7 @@ Then open:
 ## Project Structure
 
 ```
-SmartChip-MVP/
+SmartChip-POC/
 ├── packages/
 │   ├── types/           # Shared TypeScript interfaces
 │   ├── engine/          # Node.js API + logic modules (55 tests)
@@ -445,4 +445,4 @@ MIT
 
 ## Credits
 
-Built as an MVP for demonstrating the **Input/Coded/Configured** architecture pattern in conversational commerce systems.
+Built as a POC for demonstrating the **Input/Coded/Configured** architecture pattern in conversational commerce systems.
