@@ -146,6 +146,12 @@ Reads from request:
 - `stats.facets[]`: list of facets and value share distribution.
 - `config.thresholds.facet_threshold`: minimum share per value to qualify.
 
+Facet input semantics:
+- Facet values are provided by the caller in `stats.facets`; the engine does not derive or infer them.
+- `facet.name` is the filter group (for example: `brand`, `gender`, `color`).
+- `values[].value` is a selectable option inside that group (for example: `Nike`, `Women's`, `Black`).
+- `values[].share` is the fraction of current results matching that option (0 to 1).
+
 Decision rule:
 - For each facet, keep values where `share > facet_threshold`.
 - Module emits chips only if at least 2 values in that facet qualify.

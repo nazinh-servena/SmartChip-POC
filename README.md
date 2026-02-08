@@ -48,7 +48,9 @@ pnpm dev
 
 Then open:
 - **Workbench UI:** [http://localhost:5173](http://localhost:5173)
-- **Engine API:** [http://localhost:3001](http://localhost:3001)
+- **Engine API** runs on `http://localhost:3001` (no browser UI — use the Workbench or call the API directly)
+- **Architecture Overview:** open [`architecture-overview.html`](./architecture-overview.html) in your browser
+- **Product Discovery Flow:** open [`architecture-productDiscoveryFlow.html`](./architecture-productDiscoveryFlow.html) in your browser
 
 ---
 

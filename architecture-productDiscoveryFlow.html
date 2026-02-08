@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart Chips Engine Switchboard - Product Discovery</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f5f5f5;
+            padding: 20px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+        }
+        
+        .container {
+            background: white;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            max-width: 1600px;
+            width: 100%;
+        }
+        
+        svg {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+        
+        .header {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        
+        .header h1 {
+            color: #1F2937;
+            font-size: 24px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            color: #6B7280;
+            font-size: 14px;
+        }
+        
+        @media print {
+            body {
+                background: white;
+                padding: 0;
+            }
+            
+            .container {
+                box-shadow: none;
+                padding: 0;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <svg viewBox="0 0 1600 900" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+                <!-- Gradients -->
+                <linearGradient id="blueGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#4A90E2;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#2E5C8A;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="orangeGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#F59E0B;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#D97706;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="greenGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#10B981;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#059669;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="purpleGlow" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#8B5CF6;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#6D28D9;stop-opacity:1" />
+                </linearGradient>
+                <linearGradient id="grayDim" x1="0%" y1="0%" x2="0%" y2="100%">
+                    <stop offset="0%" style="stop-color:#9CA3AF;stop-opacity:1" />
+                    <stop offset="100%" style="stop-color:#6B7280;stop-opacity:1" />
+                </linearGradient>
+                
+                <!-- Filters -->
+                <filter id="glow">
+                    <feGaussianBlur stdDeviation="4" result="coloredBlur"/>
+                    <feMerge>
+                        <feMergeNode in="coloredBlur"/>
+                        <feMergeNode in="SourceGraphic"/>
+                    </feMerge>
+                </filter>
+                
+                <filter id="shadow">
+                    <feDropShadow dx="2" dy="2" stdDeviation="3" flood-opacity="0.3"/>
+                </filter>
+            </defs>
+            
+            <!-- Background -->
+            <rect width="1600" height="900" fill="#F8F9FA"/>
+            
+            <!-- Title -->
+            <text x="800" y="40" font-family="Arial, sans-serif" font-size="32" font-weight="bold" fill="#1F2937" text-anchor="middle">The Smart Chips Engine Switchboard</text>
+            <text x="800" y="70" font-family="Arial, sans-serif" font-size="16" fill="#6B7280" text-anchor="middle">Product Discovery Flow · Deterministic Logic · Code-Accurate</text>
+            
+            <!-- ZONE 1: INPUT STREAMS -->
+            <g id="inputs">
+                <!-- Intent Input (Blue) -->
+                <g transform="translate(120, 180)">
+                    <rect x="0" y="0" width="200" height="110" rx="10" fill="url(#blueGlow)" filter="url(#shadow)"/>
+                    <text x="100" y="25" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Intent Trigger</text>
+                    <text x="100" y="48" font-family="monospace" font-size="11" fill="#E0F2FE" text-anchor="middle">intent: product_discovery</text>
+                    <text x="100" y="68" font-family="monospace" font-size="10" fill="#E0F2FE" text-anchor="middle">stage: 1 (sales_chat)</text>
+                    <text x="100" y="95" font-family="Arial, sans-serif" font-size="10" fill="#E0F2FE" text-anchor="middle" font-style="italic">Determines which modules activate</text>
+                </g>
+                
+                <!-- Label A -->
+                <text x="220" y="160" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#1E40AF">Label A: The Trigger</text>
+                
+                <!-- Stats Input (Purple) -->
+                <g transform="translate(120, 320)">
+                    <rect x="0" y="0" width="200" height="110" rx="10" fill="url(#purpleGlow)" filter="url(#shadow)"/>
+                    <text x="100" y="25" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Results Stats</text>
+                    <text x="100" y="48" font-family="monospace" font-size="10" fill="#EDE9FE" text-anchor="middle">price_max: 500</text>
+                    <text x="100" y="63" font-family="monospace" font-size="10" fill="#EDE9FE" text-anchor="middle">price_min: 50</text>
+                    <text x="100" y="78" font-family="monospace" font-size="10" fill="#EDE9FE" text-anchor="middle">price_median: 120</text>
+                    <text x="100" y="98" font-family="Arial, sans-serif" font-size="9" fill="#EDE9FE" text-anchor="middle" font-style="italic">From Catalog Retrieval</text>
+                </g>
+                
+                <!-- Config Input (Orange) -->
+                <g transform="translate(120, 460)">
+                    <rect x="0" y="0" width="200" height="130" rx="10" fill="url(#orangeGlow)" filter="url(#shadow)"/>
+                    <path d="M 85 20 L 115 20 L 115 60 L 85 60 Z M 88 24 L 112 24 L 112 32 L 88 32 Z M 88 36 L 112 36 L 88 40 L 112 40 L 88 44 L 112 44 L 88 48 L 112 48" stroke="white" stroke-width="2" fill="none"/>
+                    <text x="100" y="85" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">store_config.json</text>
+                    <text x="100" y="103" font-family="monospace" font-size="9" fill="#FEF3C7" text-anchor="middle">budget_filter: enabled</text>
+                    <text x="100" y="116" font-family="monospace" font-size="9" fill="#FEF3C7" text-anchor="middle">facet_split: enabled</text>
+                </g>
+                
+                <!-- Label B -->
+                <text x="220" y="440" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#D97706">Label B: The Rules</text>
+            </g>
+            
+            <!-- Connection lines from inputs to dispatcher -->
+            <line x1="320" y1="235" x2="420" y2="360" stroke="#4A90E2" stroke-width="4" opacity="0.7"/>
+            <line x1="320" y1="375" x2="420" y2="360" stroke="#8B5CF6" stroke-width="3" opacity="0.6"/>
+            <line x1="320" y1="525" x2="420" y2="360" stroke="#F59E0B" stroke-width="4" opacity="0.7"/>
+            
+            <!-- ZONE 2: THE DISPATCHER (SWITCHBOARD) -->
+            <g id="dispatcher" transform="translate(420, 300)">
+                <!-- Central hub -->
+                <circle cx="60" cy="60" r="58" fill="#1F2937" filter="url(#shadow)"/>
+                <circle cx="60" cy="60" r="48" fill="#374151" stroke="#4A90E2" stroke-width="3"/>
+                
+                <!-- Rotating indicator -->
+                <circle cx="60" cy="60" r="28" fill="none" stroke="#F59E0B" stroke-width="2" stroke-dasharray="6,6">
+                    <animateTransform attributeName="transform" type="rotate" from="0 60 60" to="360 60 60" dur="4s" repeatCount="indefinite"/>
+                </circle>
+                
+                <text x="60" y="50" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="white" text-anchor="middle">Intent</text>
+                <text x="60" y="65" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#4A90E2" text-anchor="middle">Dispatcher</text>
+                <text x="60" y="78" font-family="Arial, sans-serif" font-size="8" fill="#9CA3AF" text-anchor="middle">computeChips()</text>
+                
+                <!-- Label -->
+                <text x="60" y="145" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1F2937" text-anchor="middle">ZONE 2: Dispatcher</text>
+                <text x="60" y="162" font-family="Arial, sans-serif" font-size="10" fill="#6B7280" text-anchor="middle">Routes to valid modules</text>
+            </g>
+            
+            <!-- ZONE 3: LOGIC MODULES -->
+            <g id="modules">
+                <!-- ACTIVE Module: Budget -->
+                <g transform="translate(640, 130)">
+                    <rect x="-6" y="-6" width="162" height="97" rx="12" fill="#4A90E2" opacity="0.25" filter="url(#glow)"/>
+                    <rect x="0" y="0" width="150" height="85" rx="8" fill="url(#blueGlow)" filter="url(#shadow)"/>
+                    <text x="75" y="30" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Budget</text>
+                    <text x="75" y="48" font-family="Arial, sans-serif" font-size="9" fill="#DBEAFE" text-anchor="middle">Filter by price range</text>
+                    <text x="75" y="65" font-family="Arial, sans-serif" font-size="11" fill="#DBEAFE" text-anchor="middle">✓ ENABLED</text>
+                </g>
+                
+                <!-- ACTIVE Module: Facet -->
+                <g transform="translate(640, 240)">
+                    <rect x="-6" y="-6" width="162" height="97" rx="12" fill="#4A90E2" opacity="0.25" filter="url(#glow)"/>
+                    <rect x="0" y="0" width="150" height="85" rx="8" fill="url(#blueGlow)" filter="url(#shadow)"/>
+                    <text x="75" y="30" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Facet</text>
+                    <text x="75" y="48" font-family="Arial, sans-serif" font-size="9" fill="#DBEAFE" text-anchor="middle">Category splits</text>
+                    <text x="75" y="65" font-family="Arial, sans-serif" font-size="11" fill="#DBEAFE" text-anchor="middle">✓ ENABLED</text>
+                </g>
+                
+                <!-- ACTIVE Module: Sort -->
+                <g transform="translate(640, 350)">
+                    <rect x="-6" y="-6" width="162" height="97" rx="12" fill="#4A90E2" opacity="0.25" filter="url(#glow)"/>
+                    <rect x="0" y="0" width="150" height="85" rx="8" fill="url(#blueGlow)" filter="url(#shadow)"/>
+                    <text x="75" y="30" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="white" text-anchor="middle">Sort</text>
+                    <text x="75" y="48" font-family="Arial, sans-serif" font-size="9" fill="#DBEAFE" text-anchor="middle">Best Rated option</text>
+                    <text x="75" y="65" font-family="Arial, sans-serif" font-size="11" fill="#DBEAFE" text-anchor="middle">✓ ENABLED</text>
+                </g>
+                
+                <!-- Inactive Module: Order -->
+                <g transform="translate(640, 460)">
+                    <rect x="0" y="0" width="150" height="85" rx="8" fill="url(#grayDim)" opacity="0.35" filter="url(#shadow)"/>
+                    <text x="75" y="35" font-family="Arial, sans-serif" font-size="14" font-weight="bold" fill="#4B5563" text-anchor="middle">Order</text>
+                    <text x="75" y="53" font-family="Arial, sans-serif" font-size="9" fill="#6B7280" text-anchor="middle">Status · Track</text>
+                    <text x="75" y="70" font-family="Arial, sans-serif" font-size="9" fill="#9CA3AF" text-anchor="middle">DISABLED</text>
+                </g>
+                
+                <!-- Connection lines from dispatcher to modules -->
+                <line x1="540" y1="340" x2="640" y2="172" stroke="#4A90E2" stroke-width="5" filter="url(#glow)"/>
+                <line x1="540" y1="355" x2="640" y2="282" stroke="#4A90E2" stroke-width="5" filter="url(#glow)"/>
+                <line x1="540" y1="370" x2="640" y2="392" stroke="#4A90E2" stroke-width="5" filter="url(#glow)"/>
+                <line x1="540" y1="385" x2="640" y2="502" stroke="#9CA3AF" stroke-width="3" opacity="0.25"/>
+                
+                <!-- Module labels -->
+                <text x="715" y="110" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2563EB" text-anchor="middle">Active for discovery ✓</text>
+                <text x="715" y="555" font-family="Arial, sans-serif" font-size="11" fill="#9CA3AF" text-anchor="middle">Intent ≠ order_status</text>
+            </g>
+            
+            <!-- ZONE 4: MODULE INTERNAL LOGIC -->
+            <g id="module-logic" transform="translate(860, 200)">
+                <!-- Logic container -->
+                <rect x="0" y="0" width="300" height="260" rx="8" fill="white" stroke="#4A90E2" stroke-width="2" filter="url(#shadow)"/>
+                
+                <text x="150" y="-12" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#2563EB" text-anchor="middle">Module Logic Gates</text>
+                
+                <!-- Budget Logic (ACTIVE) -->
+                <g transform="translate(15, 20)">
+                    <rect x="0" y="0" width="270" height="70" rx="5" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+                    <text x="135" y="18" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1E40AF" text-anchor="middle">Budget Module Logic</text>
+                    <text x="135" y="35" font-family="monospace" font-size="9" fill="#3B82F6" text-anchor="middle">ratio = price_max / price_min</text>
+                    <text x="135" y="48" font-family="monospace" font-size="9" fill="#3B82F6" text-anchor="middle">if (ratio &gt; variance_threshold)</text>
+                    <text x="135" y="61" font-family="monospace" font-size="9" fill="#059669" text-anchor="middle">  → chip: "Under $median"</text>
+                </g>
+                
+                <!-- Facet Logic (ACTIVE) -->
+                <g transform="translate(15, 100)">
+                    <rect x="0" y="0" width="270" height="70" rx="5" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+                    <text x="135" y="18" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1E40AF" text-anchor="middle">Facet Module Logic</text>
+                    <text x="135" y="35" font-family="monospace" font-size="9" fill="#3B82F6" text-anchor="middle">values: share &gt; facet_threshold</text>
+                    <text x="135" y="48" font-family="monospace" font-size="9" fill="#3B82F6" text-anchor="middle">Requires: 2+ values per facet</text>
+                    <text x="135" y="61" font-family="monospace" font-size="9" fill="#059669" text-anchor="middle">  → chips per qualifying value</text>
+                </g>
+                
+                <!-- Sort Logic (ACTIVE) -->
+                <g transform="translate(15, 180)">
+                    <rect x="0" y="0" width="270" height="70" rx="5" fill="#DBEAFE" stroke="#3B82F6" stroke-width="2"/>
+                    <text x="135" y="18" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1E40AF" text-anchor="middle">Sort Module Logic</text>
+                    <text x="135" y="35" font-family="monospace" font-size="9" fill="#3B82F6" text-anchor="middle">coverage = rating_coverage</text>
+                    <text x="135" y="48" font-family="monospace" font-size="9" fill="#3B82F6" text-anchor="middle">if (coverage &gt; rating_threshold)</text>
+                    <text x="135" y="61" font-family="monospace" font-size="9" fill="#059669" text-anchor="middle">  → chip: "Best Rated"</text>
+                </g>
+            </g>
+            
+            <!-- Arrow to outputs -->
+            <line x1="1160" y1="330" x2="1230" y2="330" stroke="#4A90E2" stroke-width="5"/>
+            <polygon points="1230,330 1220,325 1220,335" fill="#4A90E2"/>
+            
+            <!-- ZONE 5: OUTPUT (Smart Chips) -->
+            <g id="outputs">
+                <text x="1355" y="180" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="#1F2937" text-anchor="middle">suggested_actions[]</text>
+                <text x="1355" y="200" font-family="Arial, sans-serif" font-size="10" fill="#6B7280" text-anchor="middle">Ranked and truncated by channel</text>
+                
+                <!-- Active Chip: Under $450 -->
+                <g transform="translate(1230, 220)">
+                    <rect x="0" y="0" width="250" height="50" rx="25" fill="#10B981" filter="url(#shadow)"/>
+                    <text x="125" y="24" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Under $450</text>
+                    <text x="125" y="40" font-family="monospace" font-size="9" fill="#D1FAE5" text-anchor="middle">priority: 90 | Budget Module</text>
+                </g>
+                
+                <!-- Active Chip: Best Rated -->
+                <g transform="translate(1230, 285)">
+                    <rect x="0" y="0" width="250" height="50" rx="25" fill="#10B981" filter="url(#shadow)"/>
+                    <text x="125" y="24" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Best Rated</text>
+                    <text x="125" y="40" font-family="monospace" font-size="9" fill="#D1FAE5" text-anchor="middle">priority: 80 | Sort Module</text>
+                </g>
+                
+                <!-- Active Chip: Men's -->
+                <g transform="translate(1230, 350)">
+                    <rect x="0" y="0" width="120" height="50" rx="25" fill="#10B981" filter="url(#shadow)"/>
+                    <text x="60" y="24" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Men's</text>
+                    <text x="60" y="40" font-family="monospace" font-size="8" fill="#D1FAE5" text-anchor="middle">priority: 75</text>
+                </g>
+                
+                <!-- Active Chip: Women's -->
+                <g transform="translate(1360, 350)">
+                    <rect x="0" y="0" width="120" height="50" rx="25" fill="#10B981" filter="url(#shadow)"/>
+                    <text x="60" y="24" font-family="Arial, sans-serif" font-size="13" font-weight="bold" fill="white" text-anchor="middle">Women's</text>
+                    <text x="60" y="40" font-family="monospace" font-size="8" fill="#D1FAE5" text-anchor="middle">priority: 74</text>
+                </g>
+                
+                <!-- Status labels -->
+                <text x="1355" y="425" font-family="Arial, sans-serif" font-size="11" fill="#059669" text-anchor="middle">✓ Generated by active modules</text>
+                <text x="1355" y="445" font-family="Arial, sans-serif" font-size="10" fill="#6B7280" text-anchor="middle" font-style="italic">All 6 modules logged in trace[]</text>
+                <text x="1355" y="462" font-family="monospace" font-size="9" fill="#9CA3AF" text-anchor="middle">fired: true/false + reason</text>
+            </g>
+            
+            <!-- Key Architecture Principle Box -->
+            <g transform="translate(50, 640)">
+                <rect x="0" y="0" width="1500" height="220" rx="12" fill="#F0FDF4" stroke="#10B981" stroke-width="3"/>
+                
+                <text x="750" y="35" font-family="Arial, sans-serif" font-size="18" font-weight="bold" fill="#065F46" text-anchor="middle">Code-Accurate Architecture Principles</text>
+                
+                <!-- Principle 1 -->
+                <g transform="translate(80, 60)">
+                    <circle cx="0" cy="0" r="10" fill="#10B981"/>
+                    <text x="20" y="5" font-family="Arial, sans-serif" font-size="13" fill="#1F2937">
+                        <tspan font-weight="bold">Deterministic Logic:</tspan> Each module uses if/else rules based on stats. Budget: price ratio. Facet: share threshold. Sort: rating coverage.
+                    </text>
+                </g>
+                
+                <!-- Principle 2 -->
+                <g transform="translate(80, 90)">
+                    <circle cx="0" cy="0" r="10" fill="#F59E0B"/>
+                    <text x="20" y="5" font-family="Arial, sans-serif" font-size="13" fill="#1F2937">
+                        <tspan font-weight="bold">Config Toggles:</tspan> config.modules.* controls execution. Change enabled: true/false to activate/deactivate modules instantly.
+                    </text>
+                </g>
+                
+                <!-- Principle 3 -->
+                <g transform="translate(80, 120)">
+                    <circle cx="0" cy="0" r="10" fill="#3B82F6"/>
+                    <text x="20" y="5" font-family="Arial, sans-serif" font-size="13" fill="#1F2937">
+                        <tspan font-weight="bold">Fixed Execution Order:</tspan> Modules run sequentially: Budget → Facet → Sort → Order → Cart → Policy. Intent is metadata; toggles control what fires.
+                    </text>
+                </g>
+                
+                <!-- Principle 4 -->
+                <g transform="translate(80, 150)">
+                    <circle cx="0" cy="0" r="10" fill="#8B5CF6"/>
+                    <text x="20" y="5" font-family="Arial, sans-serif" font-size="13" fill="#1F2937">
+                        <tspan font-weight="bold">Complete Tracing:</tspan> Engine returns trace[] with one entry per module (all 6), showing fired=true/false, reason, and chips_proposed.
+                    </text>
+                </g>
+                
+                <!-- Performance metric -->
+                <g transform="translate(80, 185)">
+                    <rect x="0" y="-15" width="1340" height="35" rx="6" fill="#FEF3C7" stroke="#F59E0B" stroke-width="1"/>
+                    <text x="670" y="7" font-family="Arial, sans-serif" font-size="12" fill="#92400E" text-anchor="middle">
+                        <tspan font-weight="bold">Key:</tspan> Config key is enable_cod (not cod_enabled) · No invented actions · Real chips from rule logic · Sub-200ms execution
+                    </text>
+                </g>
+            </g>
+            
+            <!-- Zone Labels (Bottom annotations) -->
+            <g id="zone-labels" opacity="0.8">
+                <rect x="50" y="595" width="140" height="30" rx="5" fill="#EFF6FF"/>
+                <text x="120" y="615" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1E40AF" text-anchor="middle">ZONE 1: Inputs</text>
+                
+                <rect x="400" y="595" width="160" height="30" rx="5" fill="#F3F4F6"/>
+                <text x="480" y="615" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#4B5563" text-anchor="middle">ZONE 2: Dispatcher</text>
+                
+                <rect x="640" y="595" width="150" height="30" rx="5" fill="#DBEAFE"/>
+                <text x="715" y="615" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#2563EB" text-anchor="middle">ZONE 3: Modules</text>
+                
+                <rect x="860" y="595" width="170" height="30" rx="5" fill="#EFF6FF"/>
+                <text x="945" y="615" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#1E40AF" text-anchor="middle">ZONE 4: Logic Gates</text>
+                
+                <rect x="1230" y="595" width="250" height="30" rx="5" fill="#D1FAE5"/>
+                <text x="1355" y="615" font-family="Arial, sans-serif" font-size="11" font-weight="bold" fill="#059669" text-anchor="middle">ZONE 5: Smart Chips Output</text>
+            </g>
+        </svg>
+    </div>
+</body>
+</html>

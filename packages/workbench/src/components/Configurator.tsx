@@ -83,6 +83,12 @@ function DiscoveryConfig({ request, onChange }: { request: ComputeChipsRequest; 
         <Slider label="Facet Share" min={0.1} max={0.5} step={0.05} value={thresholds.facet_threshold}
           format={(v) => `${(v * 100).toFixed(0)}%`}
           onChange={(v) => onChange({ ...request, config: { ...request.config, thresholds: { ...thresholds, facet_threshold: v } } })} />
+        <p className="text-[11px] text-slate-600 mb-2">
+          Facet values come from <span className="font-mono text-slate-400">stats.facets</span> in the request.
+          <span className="text-slate-400"> share </span>
+          means the fraction of results matching a value (for example, <span className="font-mono text-slate-400">0.35 = 35%</span>).
+          This threshold keeps only values with <span className="font-mono text-slate-400">share &gt; threshold</span>, and a facet needs at least 2 qualifying values to show chips.
+        </p>
         <Slider label="Rating Coverage" min={0.1} max={0.9} step={0.05} value={thresholds.rating_threshold}
           format={(v) => `${(v * 100).toFixed(0)}%`}
           onChange={(v) => onChange({ ...request, config: { ...request.config, thresholds: { ...thresholds, rating_threshold: v } } })} />

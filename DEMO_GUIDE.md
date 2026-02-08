@@ -192,9 +192,14 @@ CODED: If (price_max / price_min) > variance_threshold → Generate "Under $Medi
 ```typescript
 CODED: If 2+ facet values exceed facet_threshold → Generate chip per value
 ```
-- **INPUT:** `facets` array with name + values (share %)
+- **INPUT:** `facets` array with name + values (share %). These values are passed in from the request payload (not computed inside the engine).
 - **CONFIGURED:** `facet_threshold` (default 20%)
 - **Priority:** 70–80 (based on share — higher share = higher priority)
+
+Facet value meaning:
+- `facet.name` = filter group (example: `brand`, `color`, `gender`)
+- `value` = one option in that group (example: `Nike`, `Black`, `Women's`)
+- `share` = fraction of current results matching that option (0.0 to 1.0)
 
 ### SortModule (Product Discovery)
 ```typescript
