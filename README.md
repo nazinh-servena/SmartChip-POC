@@ -8,7 +8,7 @@ A deterministic navigation chip generator for conversational commerce. The engin
 [![Tests](https://img.shields.io/badge/tests-55%20passing-success.svg)](./packages/engine/__tests__)
 [![License](https://img.shields.io/badge/license-MIT-blue.svg)](./LICENSE)
 
-[Demo Guide](./DEMO_GUIDE.md) • [Architecture](./packages/engine/ARCHITECTURE.md) • [API Reference](./packages/engine/API.md)
+[Demo Guide](./DEMO_GUIDE.md) • [Architecture](./packages/engine/ARCHITECTURE.md) • [API Reference](./packages/engine/API.md) • [Production RFC](./PRODUCTION_READINESS_RFC.md)
 
 </div>
 
